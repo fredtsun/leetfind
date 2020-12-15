@@ -18,9 +18,9 @@ Then: `pip install -r requirements.txt`
 
 #### Run Script:
 Once the dependencies are installed, run the scraper once:
-`python3 scripts/runs_scraper.py`
+`python3 run_scraper.py`
 
-(This will produce a text file called `leetfind.txt` that the server will use to search against. I didn't build in a way to configure where this file lives, so just place the file in the root, where `requirements.txt` is.)
+This will produce a text file called `leetfind.txt` that the server will use to search against. I didn't build in a way to configure where this file lives, so just place the file in the root (where `requirements.txt` is, if it's not already there).
 
 #### Ripgrep:
 This uses [ripgrep](https://github.com/BurntSushi/ripgrep) under the hood, so make sure that is installed. On a Mac: `brew install ripgrep` would get the job done. Installation processes for other OS's are in the link above.
