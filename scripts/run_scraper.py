@@ -46,7 +46,7 @@ def scrape():
       p.set_discussion_titles([extract_title(json) for json in discussions_data])
       f.write(str(p) + '\n')
       print(f"Done processing {p.question_id}!")
-  # store in a postgres instance
+
 
 if __name__ == '__main__':
   scrape()
