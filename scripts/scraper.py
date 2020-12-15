@@ -1,4 +1,4 @@
-from scripts.util import discussions_query
+from util import discussions_query
 
 import pydash
 import requests
@@ -19,6 +19,10 @@ class Problem(object):
   def set_discussion_titles(self, discussion_titles):
     self.discussion_titles = discussion_titles
 
+  def __str__(self):
+    split_token = '🔥🥳'
+    return f"{self.title}{split_token}{self.question_id_display}{split_token}{' '.join(self.discussion_titles)}"
+
 
 def get_problems():
   resp = requests.get(PROBLEMS_URL)
@@ -34,12 +38,14 @@ def extract_title(json):
 
 def scrape():
   problems = get_problems()
-  for p in sorted(problems, key=lambda p: p.question_id):
-    print(f"Processing {p.question_id}")
-    resp = discussions_query.execute(p.question_id)
-    discussions_data = pydash.get(resp.json(), 'data.questionTopicsList.edges')
-    p.set_discussion_titles([extract_title(json) for json in discussions_data])
-    print(f"Done processing {p.question_id}!")
+  with open("leetfind.txt","w+") as f:
+    for p in sorted(problems, key=lambda p: p.question_id):
+      print(f"Processing {p.question_id}")
+      resp = discussions_query.execute(p.question_id)
+      discussions_data = pydash.get(resp.json(), 'data.questionTopicsList.edges')
+      p.set_discussion_titles([extract_title(json) for json in discussions_data])
+      f.write(str(p) + '\n')
+      print(f"Done processing {p.question_id}!")
   # store in a postgres instance
 
 if __name__ == '__main__':
