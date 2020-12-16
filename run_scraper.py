@@ -63,7 +63,6 @@ class DiscussionQuery(object):
       }
     }
     fragment TopicsList on TopicConnection {
-      totalNum
       edges {
         node {
           id
@@ -84,29 +83,8 @@ class DiscussionQuery(object):
             status
             __typename
           }
-          lastComment {
-            id
-            post {
-              id
-              author {
-                isActive
-                username
-                profile {
-                  userSlug
-                  __typename
-                }
-                __typename
-              }
-              peek
-              creationDate
-              __typename
-            }
-            __typename
-          }
           __typename
         }
-        cursor
-        __typename
       }
       __typename
     }"""
