@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 import subprocess
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
 
 class Search(Resource):
     def get(self, search_term):
