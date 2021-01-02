@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import {
     Table,
     TableContainer,
@@ -44,7 +43,7 @@ class SearchTable extends React.Component<{}, { data: LeetcodeProblem[] }> {
 
     async searchTermChange(event: React.ChangeEvent<HTMLInputElement>) {
         const input = event.target.value;
-        if (!input) {
+        if (!input || input.length < 3) {
             this.setState({ data: [] });
             return;
         }

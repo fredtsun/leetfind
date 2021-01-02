@@ -1,2 +1,2 @@
 #/bin/bash
-gunicorn --reload --bind localhost:8000 server:app
+gunicorn --workers=5 --reload server:app
